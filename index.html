@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>24 SEVEN Sound Hub — Graphic Designer Portfolio</title>
+  <meta name="description" content="Graphic designer portfolio: photography, motion and sound.">
+  <link rel="icon" href="assets/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="public-page">
+  <div class="bg-layer" aria-hidden="true"></div>
+
+  <main class="shell">
+    <!-- Camera icon + logo (logo button opens admin login) -->
+    <div class="brand-pill">
+      <span class="icon-box" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M4 8h3l1.5-2h7L17 8h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13" r="3.6"/></svg>
+      </span>
+      <button type="button" class="logo-btn" id="logoBtn" aria-label="24 SEVEN Sound Hub">
+        <img src="assets/logo.png" alt="24 SEVEN Sound Hub">
+      </button>
+    </div>
+
+    <section class="stage glass" id="home">
+      <header class="topbar">
+        <a class="topbar-brand" href="index.html" aria-label="24 SEVEN Sound Hub home">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12l4 6-10 12L2 9z"/><path d="M2 9h20M9 3l3 6 3-6M12 21 8 9m4 12 4-12"/></svg>
+          <img src="assets/logo.png" alt="24 SEVEN Sound Hub">
+        </a>
+        <nav class="nav" aria-label="Main">
+          <button type="button" class="nav-item active" data-nav="home">Home</button>
+          <button type="button" class="nav-item" data-nav="music">Music</button>
+          <button type="button" class="nav-item" data-nav="artwork">Artwork</button>
+          <button type="button" class="nav-item" data-nav="contact">Contact</button>
+          <button type="button" class="nav-item" data-nav="about">About</button>
+          <button type="button" class="avatar" data-nav="about" aria-label="About the designer">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4.2"/><path d="M3.5 21c.8-4.4 4.2-6.6 8.5-6.6s7.7 2.2 8.5 6.6z"/></svg>
+          </button>
+        </nav>
+      </header>
+
+      <section class="hero">
+        <h1 id="heroTitle">Graphic Designer Portfolio</h1>
+        <p id="heroSubtitle">Curated creative works — exploring photography, motion, and sound. Designed for clients, crafted with detail.</p>
+      </section>
+
+      <section class="cards" aria-label="Portfolio sections">
+        <article class="card glass">
+          <h2 class="card-title">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h3l1.5-2h7L17 8h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13" r="3.6"/></svg>
+            Pictures
+          </h2>
+          <div class="preview preview--pictures" id="previewPictures"></div>
+          <p class="card-meta" id="metaPictures">0 items • Photos</p>
+          <button type="button" class="card-link" data-open="pictures">View Gallery →</button>
+        </article>
+
+        <article class="card glass">
+          <h2 class="card-title">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3.5" class="fill"/><path d="M10.2 9.4v5.2l4.4-2.6z" fill="#2f3f35" stroke="none"/></svg>
+            Videos
+          </h2>
+          <div class="preview preview--videos" id="previewVideos"></div>
+          <p class="card-meta" id="metaVideos">0 items • Motion &amp; Reels</p>
+          <button type="button" class="card-link" data-open="videos">View Videos →</button>
+        </article>
+
+        <article class="card glass">
+          <h2 class="card-title">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18V6l10-2v12"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="16.5" cy="16" r="2.5"/></svg>
+            Music
+          </h2>
+          <div class="preview preview--music" id="previewMusic"></div>
+          <p class="card-meta" id="metaMusic">0 tracks • Audio &amp; Soundscapes</p>
+          <button type="button" class="card-link" data-open="music">Listen Now →</button>
+        </article>
+      </section>
+
+      <div class="stats-wrap">
+        <div class="stats" aria-label="Site statistics">
+          <div class="stat">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>
+            <div><small>Total Views</small><strong id="statViews">12.4k</strong></div>
+          </div>
+          <div class="stat">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c.8-4.2 4-6 8-6s7.2 1.8 8 6z"/></svg>
+            <div><small>Clients</small><strong id="statClients">36</strong></div>
+          </div>
+          <div class="stat">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0-4.5-4.5M12 15l4.5-4.5M4 20h16"/></svg>
+            <div><small>Downloads</small><strong id="statDownloads">1.8k</strong></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <p class="site-foot">© <span id="year"></span> 24 SEVEN Sound Hub</p>
+
+  <!-- Admin login modal (opened from the logo button) -->
+  <div class="modal" id="adminLoginModal" role="dialog" aria-modal="true" aria-labelledby="loginTitle" hidden>
+    <form class="modal-box glass" id="loginForm" autocomplete="off">
+      <button type="button" class="modal-close" data-close aria-label="Close">×</button>
+      <img class="modal-logo" src="assets/logo.png" alt="24 SEVEN Sound Hub">
+      <h2 id="loginTitle">Admin login</h2>
+      <p class="lead" id="loginLead">Sign in to upload and manage portfolio content.</p>
+      <div class="field">
+        <label for="loginUser">Username</label>
+        <input class="input" id="loginUser" name="username" type="text" autocomplete="username" autocapitalize="none" spellcheck="false" required>
+      </div>
+      <div class="field">
+        <label for="loginPass">Password</label>
+        <input class="input" id="loginPass" name="password" type="password" autocomplete="current-password" required>
+      </div>
+      <div class="field" id="loginConfirmField" hidden>
+        <label for="loginConfirm">Confirm password</label>
+        <input class="input" id="loginConfirm" name="confirm" type="password" autocomplete="new-password">
+      </div>
+      <div class="field" id="loginEmailField" hidden>
+        <label for="loginEmail">Your email (for security alerts)</label>
+        <input class="input" id="loginEmail" name="email" type="email" autocomplete="email" autocapitalize="none" spellcheck="false">
+      </div>
+      <p class="form-error" id="loginError" role="alert"></p>
+      <button type="submit" class="btn-primary auto" id="loginSubmit">Sign in</button>
+    </form>
+  </div>
+
+  <!-- Gallery / videos / music viewer -->
+  <div class="modal" id="viewerModal" role="dialog" aria-modal="true" aria-labelledby="viewerTitle" hidden>
+    <div class="modal-box wide glass">
+      <button type="button" class="modal-close" data-close aria-label="Close">×</button>
+      <div class="viewer-head"><h2 id="viewerTitle"></h2></div>
+      <div id="viewerBody"></div>
+    </div>
+  </div>
+
+  <!-- Contact / About -->
+  <div class="modal" id="infoModal" role="dialog" aria-modal="true" aria-labelledby="infoTitle" hidden>
+    <div class="modal-box glass">
+      <button type="button" class="modal-close" data-close aria-label="Close">×</button>
+      <h2 id="infoTitle"></h2>
+      <div id="infoBody"></div>
+    </div>
+  </div>
+
+  <!-- Picture lightbox -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Picture viewer" hidden>
+    <button type="button" class="lb-btn lb-close" id="lbClose" aria-label="Close">×</button>
+    <button type="button" class="lb-btn lb-prev" id="lbPrev" aria-label="Previous">‹</button>
+    <figure>
+      <img id="lbImg" alt="">
+      <figcaption id="lbCaption"></figcaption>
+    </figure>
+    <button type="button" class="lb-btn lb-next" id="lbNext" aria-label="Next">›</button>
+  </div>
+
+  <div class="toast" id="toast" role="status" hidden></div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

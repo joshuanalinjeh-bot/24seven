@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Admin — 24 SEVEN Sound Hub</title>
+  <link rel="icon" href="assets/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="admin-page">
+  <div class="bg-layer" aria-hidden="true"></div>
+
+  <!-- Everything below stays hidden until js/admin.js confirms a valid admin login -->
+  <main class="shell" id="adminApp" hidden>
+    <div class="brand-pill">
+      <span class="icon-box" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M4 8h3l1.5-2h7L17 8h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13" r="3.6"/></svg>
+      </span>
+      <a class="logo-btn" href="index.html" aria-label="24 SEVEN Sound Hub — view public site">
+        <img src="assets/logo.png" alt="24 SEVEN Sound Hub">
+      </a>
+    </div>
+
+    <div class="layout">
+      <!-- ========== Upload New Work ========== -->
+      <aside class="panel glass" aria-label="Upload new work">
+        <h2>Upload New Work</h2>
+
+        <label class="drop" id="dropZone" for="fileInput">
+          <div class="drop-head">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15V4m0 0L8 8m4-4 4 4M4 15v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></svg>
+            <span>Drag &amp; drop files here</span>
+          </div>
+          <p class="drop-sub">or click to browse • PNG, JPG, MP4, MP3 • Max 100MB</p>
+        </label>
+        <input class="visually-hidden" type="file" id="fileInput" multiple accept="image/*">
+        <div class="file-chips" id="fileChips"></div>
+        <p class="file-summary" id="fileSummary" hidden></p>
+
+        <div class="field">
+          <label for="uploadTitle">Title</label>
+          <input class="input" id="uploadTitle" type="text" placeholder="e.g. Sunset Cityscape Concept" maxlength="120">
+        </div>
+
+        <div class="field">
+          <label for="uploadCategory">Category</label>
+          <select class="select" id="uploadCategory">
+            <option>Photography</option>
+            <option>Illustration</option>
+            <option>Branding</option>
+            <option>Motion Graphics</option>
+            <option>Sound Design</option>
+            <option>Other</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <span class="label" id="mediaTypeLabel">Media Type</span>
+          <div class="seg" role="group" aria-labelledby="mediaTypeLabel" id="mediaTypes">
+            <button type="button" class="seg-btn active" data-type="picture" aria-pressed="true">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3"/><circle cx="9" cy="10" r="1.8"/><path d="m4 18 5-5 4 4 3-3 4 4"/></svg>Picture
+            </button>
+            <button type="button" class="seg-btn" data-type="video" aria-pressed="false">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Video
+            </button>
+            <button type="button" class="seg-btn" data-type="music" aria-pressed="false">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18V6l10-2v12"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="16.5" cy="16" r="2.5"/></svg>Music
+            </button>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="label">Album<small>Group all selected files into one album</small></div>
+          <span class="switch"><input type="checkbox" id="albumToggle" aria-label="Album"><span class="track"></span><span class="thumb"></span></span>
+        </div>
+
+        <div class="field" id="albumField" hidden>
+          <label for="albumName">Album name</label>
+          <input class="input" id="albumName" type="text" placeholder="e.g. Midnight Sessions Vol. 1" maxlength="120">
+        </div>
+
+        <div class="field" id="coverField" hidden>
+          <label for="uploadCover">Cover photo (optional)</label>
+          <input class="input" id="uploadCover" type="file" accept="image/*">
+        </div>
+
+        <div class="row">
+          <div class="label">Make Public</div>
+          <span class="switch"><input type="checkbox" id="publicToggle" checked aria-label="Make public"><span class="track"></span><span class="thumb"></span></span>
+        </div>
+
+        <button type="button" id="uploadBtn">upload to 24seven</button>
+        <progress id="uploadProgress" value="0" max="1" hidden></progress>
+        <p class="storage" id="storageNote"></p>
+
+        <div class="recent">
+          <h3>Recent Uploads</h3>
+          <ul class="recent-list" id="recentList"></ul>
+        </div>
+      </aside>
+
+      <!-- ========== Right main ========== -->
+      <section class="stage glass">
+        <header class="topbar">
+          <a class="topbar-brand" href="index.html" aria-label="View public site">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12l4 6-10 12L2 9z"/><path d="M2 9h20M9 3l3 6 3-6M12 21 8 9m4 12 4-12"/></svg>
+            <img src="assets/logo.png" alt="24 SEVEN Sound Hub">
+          </a>
+          <nav class="nav" aria-label="Main">
+            <a class="nav-item active" href="admin.html">Home</a>
+            <a class="nav-item" href="index.html#music">Music</a>
+            <a class="nav-item" href="index.html#artwork">Artwork</a>
+            <a class="nav-item" href="index.html#contact">Contact</a>
+            <a class="nav-item" href="index.html#about">About</a>
+            <button type="button" class="avatar" id="logoutBtn" title="Log out" aria-label="Log out">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4.2"/><path d="M3.5 21c.8-4.4 4.2-6.6 8.5-6.6s7.7 2.2 8.5 6.6z"/></svg>
+            </button>
+          </nav>
+        </header>
+
+        <section class="hero">
+          <h1 id="heroTitle">Graphic Designer Portfolio</h1>
+          <p id="heroSubtitle">Curated creative works — exploring photography, motion, and sound. Designed for clients, crafted with detail.</p>
+        </section>
+
+        <section class="cards" aria-label="Portfolio overview">
+          <article class="card glass">
+            <h2 class="card-title">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h3l1.5-2h7L17 8h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13" r="3.6"/></svg>
+              Pictures
+            </h2>
+            <div class="preview preview--pictures" id="previewPictures"></div>
+            <p class="card-meta" id="metaPictures">0 items • Photos</p>
+            <button type="button" class="card-link" data-filter="picture">Manage Gallery →</button>
+          </article>
+          <article class="card glass">
+            <h2 class="card-title">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3.5" class="fill"/><path d="M10.2 9.4v5.2l4.4-2.6z" fill="#2f3f35" stroke="none"/></svg>
+              Videos
+            </h2>
+            <div class="preview preview--videos" id="previewVideos"></div>
+            <p class="card-meta" id="metaVideos">0 items • Motion &amp; Reels</p>
+            <button type="button" class="card-link" data-filter="video">Manage Videos →</button>
+          </article>
+          <article class="card glass">
+            <h2 class="card-title">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18V6l10-2v12"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="16.5" cy="16" r="2.5"/></svg>
+              Music
+            </h2>
+            <div class="preview preview--music" id="previewMusic"></div>
+            <p class="card-meta" id="metaMusic">0 tracks • Audio &amp; Soundscapes</p>
+            <button type="button" class="card-link" data-filter="music">Manage Music →</button>
+          </article>
+        </section>
+
+        <div class="stats-wrap">
+          <div class="stats" aria-label="Site statistics">
+            <div class="stat">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>
+              <div><small>Total Views</small><strong id="statViews">12.4k</strong></div>
+            </div>
+            <div class="stat">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c.8-4.2 4-6 8-6s7.2 1.8 8 6z"/></svg>
+              <div><small>Clients</small><strong id="statClients">36</strong></div>
+            </div>
+            <div class="stat">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0-4.5-4.5M12 15l4.5-4.5M4 20h16"/></svg>
+              <div><small>Downloads</small><strong id="statDownloads">1.8k</strong></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Library -->
+        <section class="section glass" id="library" aria-labelledby="libTitle">
+          <h2 id="libTitle">Library</h2>
+          <p class="sub">Show or hide items on the public site, change cover photos, or delete uploads.</p>
+          <div class="lib-filter" id="libFilter">
+            <button type="button" class="seg-btn active" data-filter="all">All</button>
+            <button type="button" class="seg-btn" data-filter="picture">Pictures</button>
+            <button type="button" class="seg-btn" data-filter="video">Videos</button>
+            <button type="button" class="seg-btn" data-filter="music">Music</button>
+          </div>
+          <div id="libList"></div>
+          <input class="visually-hidden" type="file" id="coverInput" accept="image/*" tabindex="-1">
+        </section>
+
+        <!-- Settings -->
+        <section class="section glass" id="settings" aria-labelledby="setTitle">
+          <h2 id="setTitle">Website settings</h2>
+          <p class="sub">Only the signed-in admin can change these. Changes appear on the public site right away.</p>
+          <form id="settingsForm" class="form-grid" autocomplete="off">
+            <h3>Homepage</h3>
+            <div class="field full"><label for="setHeroTitle">Headline</label><input class="input" id="setHeroTitle" type="text" maxlength="80"></div>
+            <div class="field full"><label for="setHeroSubtitle">Subtitle</label><textarea class="input" id="setHeroSubtitle" maxlength="300"></textarea></div>
+            <div class="field"><label for="setViews">Total Views</label><input class="input" id="setViews" type="text" maxlength="12"></div>
+            <div class="field"><label for="setClients">Clients</label><input class="input" id="setClients" type="text" maxlength="12"></div>
+            <div class="field"><label for="setDownloads">Downloads</label><input class="input" id="setDownloads" type="text" maxlength="12"></div>
+
+            <h3>Contact &amp; About</h3>
+            <div class="field"><label for="setEmail">Email</label><input class="input" id="setEmail" type="email" maxlength="120"></div>
+            <div class="field"><label for="setPhone">Phone</label><input class="input" id="setPhone" type="text" maxlength="40"></div>
+            <div class="field full"><label for="setLocation">Location</label><input class="input" id="setLocation" type="text" maxlength="120"></div>
+            <div class="field full"><label for="setAbout">About text</label><textarea class="input" id="setAbout" maxlength="1500"></textarea></div>
+
+            <h3>Admin login</h3>
+            <div class="field"><label for="setUser">Username</label><input class="input" id="setUser" type="text" autocomplete="off" maxlength="40"></div>
+            <div class="field"><label for="setPass">New password (leave blank to keep)</label><input class="input" id="setPass" type="password" autocomplete="new-password" maxlength="80"></div>
+
+            <h3>Email security</h3>
+            <p class="hint full">Browsers cannot send email alone, so this uses the free EmailJS service. Create an account at emailjs.com, add an email service, then create a template with <b>To Email</b> = <code>{{to_email}}</code>, <b>Subject</b> = <code>{{subject}}</code> and the body = <code>{{message}}</code>. Paste its IDs and your Public Key below. Alerts go to the email address entered under Contact &amp; About.</p>
+            <div class="field"><label for="setSvc">EmailJS Service ID</label><input class="input" id="setSvc" type="text" autocomplete="off" autocapitalize="none" spellcheck="false" maxlength="80"></div>
+            <div class="field"><label for="setTpl">EmailJS Template ID</label><input class="input" id="setTpl" type="text" autocomplete="off" autocapitalize="none" spellcheck="false" maxlength="80"></div>
+            <div class="field full"><label for="setKey">EmailJS Public Key</label><input class="input" id="setKey" type="text" autocomplete="off" autocapitalize="none" spellcheck="false" maxlength="120"></div>
+            <div class="field full">
+              <button type="button" class="btn" id="testEmailBtn">Send test email</button>
+              <p class="hint" id="emailStatus" role="status"></p>
+            </div>
+            <div class="field full">
+              <div class="row">
+                <div class="label">Require an emailed confirmation code at login<small>Turn on only after the test email arrives, or you could lock yourself out.</small></div>
+                <span class="switch"><input type="checkbox" id="setRequireCode" aria-label="Require emailed confirmation code"><span class="track"></span><span class="thumb"></span></span>
+              </div>
+            </div>
+
+            <div class="field full"><button type="submit" class="btn-primary auto">Save settings</button></div>
+          </form>
+        </section>
+
+        <!-- Security activity -->
+        <section class="section glass" id="security" aria-labelledby="secTitle">
+          <h2 id="secTitle">Security activity</h2>
+          <p class="sub">Recent logins and failed attempts on this browser. Passwords are never recorded.</p>
+          <ul class="log-list" id="secLog"></ul>
+          <button type="button" class="btn btn-sm" id="clearLogBtn">Clear log</button>
+        </section>
+      </section>
+    </div>
+  </main>
+
+  <!-- Admin login (shown when not signed in) -->
+  <div class="modal" id="adminLoginModal" role="dialog" aria-modal="true" aria-labelledby="loginTitle" hidden>
+    <form class="modal-box glass" id="loginForm" autocomplete="off">
+      <a class="modal-close" href="index.html" aria-label="Back to site">×</a>
+      <img class="modal-logo" src="assets/logo.png" alt="24 SEVEN Sound Hub">
+      <h2 id="loginTitle">Admin login</h2>
+      <p class="lead" id="loginLead">Sign in to upload and manage portfolio content.</p>
+      <div class="field" id="loginUserField">
+        <label for="loginUser">Username</label>
+        <input class="input" id="loginUser" name="username" type="text" autocomplete="username" autocapitalize="none" spellcheck="false" required>
+      </div>
+      <div class="field" id="loginPassField">
+        <label for="loginPass">Password</label>
+        <input class="input" id="loginPass" name="password" type="password" autocomplete="current-password" required>
+      </div>
+      <div class="field" id="loginConfirmField" hidden>
+        <label for="loginConfirm">Confirm password</label>
+        <input class="input" id="loginConfirm" name="confirm" type="password" autocomplete="new-password">
+      </div>
+      <div class="field" id="loginEmailField" hidden>
+        <label for="loginEmail">Your email (for security alerts)</label>
+        <input class="input" id="loginEmail" name="email" type="email" autocomplete="email" autocapitalize="none" spellcheck="false">
+      </div>
+      <div class="field" id="loginCodeField" hidden>
+        <label for="loginCode">Confirmation code</label>
+        <input class="input input-code" id="loginCode" name="code" type="text" inputmode="numeric" pattern="[0-9]{6}" maxlength="6" autocomplete="one-time-code">
+      </div>
+      <p class="form-error" id="loginError" role="alert"></p>
+      <button type="submit" class="btn-primary auto" id="loginSubmit">Sign in</button>
+      <div class="login-links" id="loginCodeActions" hidden>
+        <button type="button" class="link-btn" id="loginResend">Send a new code</button>
+        <button type="button" class="link-btn" id="loginBack">Back</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="toast" id="toast" role="status" hidden></div>
+
+  <script src="js/admin.js"></script>
+</body>
+</html>
